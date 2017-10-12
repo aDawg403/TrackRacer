@@ -34,7 +34,7 @@ public class GameController {
 			  if (starter==2){
 				  break; 
 			  }
-			  displaySUVOption(mySUV, mySport, aDes, anArc, aGameController);
+			  displaySUVOption(mySUV);
 			  displaySportOptions(mySport); 
 			  generateBlizzard();
 			  generateHeat(); 
@@ -66,7 +66,7 @@ public class GameController {
 	
 	public void performActionSUV(String action, SUV mySUV) {
 		if (action.equals("c"))
-			Debug.on=true; 
+			Debug.on=true;
 		if(action.equals("q"))	{
 			System.out.println("Quitting game...");
 			System.exit(1);
@@ -110,7 +110,7 @@ public class GameController {
 	}
 	
 
-	public void displaySUVOption(SUV mySUV, Sports mySports, DesertTrack aDes, ArcticTrack anArc, GameController aGameController) {//displays suv menu and uses input to see what to do next
+	public void displaySUVOption(SUV mySUV) {//displays suv menu and uses input to see what to do next
 		displaySUVOptions();
 		String userAction = getInput();
 		performActionSUV(userAction, mySUV);

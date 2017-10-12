@@ -31,8 +31,8 @@ public class GameController {
 			  if (starter==2){
 				  break; 
 			  }
-			  mySUV.turn(mySUV, aGameController);
-			  mySport.turn(mySport, aGameController); 
+			  mySUV.turn(aGameController);
+			  mySport.turn(aGameController); 
 			  generateBlizzard();
 			  generateHeat(); 
 			  if (mySport.getFuel() <= 1){

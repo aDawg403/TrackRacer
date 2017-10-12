@@ -11,9 +11,9 @@ public class testCases {
 		GameController gc = new GameController();  
 		Sports mySport = new Sports();
 		String action = "d";
-		int newPosition = gc.sportsUserInput + 3;
-		gc.performActionSport(action, mySport);
-		assertEquals(gc.sportsUserInput, newPosition); //Assert the position for the sport vehicle has changed
+		int newPosition = mySport.getDistanceTravelled() + 3;
+		mySport.performAction(action, gc);
+		assertEquals(mySport.getDistanceTravelled(), newPosition); //Assert the position for the sport vehicle has changed
 	}
 	@Test
 	public void testPerformActionSportDebug() {
@@ -21,7 +21,7 @@ public class testCases {
 		Sports mySport = new Sports();
 		String action = "c";
 		Debug.on = false;
-		gc.performActionSport(action, mySport);
+		mySport.performAction(action, gc);
 		assertEquals(Debug.on, true); //Assert that debug has changed
 	}
 	
@@ -33,18 +33,18 @@ public class testCases {
 		GameController gc = new GameController();  
 		SUV mySUV = new SUV();
 		String action = "d";
-		int newPosition = gc.suvUserInput + 2;
-		gc.performActionSUV(action, mySUV);
-		assertEquals(gc.suvUserInput, newPosition); //Assert the position for the sport vehicle has changed
+		int newPosition = mySUV.getDistanceTravelled() + 2;
+		mySUV.performAction(action, gc);
+		assertEquals(mySUV.getDistanceTravelled(), newPosition); //Assert the position for the sport vehicle has changed
 	}
 	@Test
 	public void testPerformActionSUVAWD(){
 		GameController gc = new GameController();  
 		SUV mySUV = new SUV();
 		String action = "a";
-		int newPosition = gc.suvUserInput + 2;
-		gc.performActionSUV(action, mySUV);
-		assertEquals(gc.suvUserInput, newPosition); //Assert the position for the sport vehicle has changed
+		int newPosition = mySUV.getDistanceTravelled() + 2;
+		mySUV.performAction(action, gc);
+		assertEquals(mySUV.getDistanceTravelled(), newPosition); //Assert the position for the sport vehicle has changed
 	}
 	@Test
 	public void testPerformActionSUVDebug(){
@@ -52,7 +52,7 @@ public class testCases {
 		SUV mySUV = new SUV();
 		String action = "c";
 		Debug.on = false;
-		gc.performActionSUV(action, mySUV);
+		mySUV.performAction(action, gc);
 		assertEquals(Debug.on, true); //Assert that debug has changed
 	}
 	

@@ -1,5 +1,4 @@
-
-
+import java.util.Scanner;
 
 /*
 Author:  James Tam
@@ -11,19 +10,40 @@ Features:
 
 */
 
-public class Car
+abstract public class Car
 {
   public static final int STARTING_FUEL = 40;
   public static final int STANDARD_DISTANCE = 2;
   public static final int CONSUMPTION_RATE = 2;
 
-  private char appearance;
-  private int fuel;
+  protected char appearance;
+  protected int currentPosition;
+  protected int fuelLevel;
+  protected int fuel;
+  protected int consumptionRate;
+  protected int speed;
 
+  
+  
+
+	public int getFuelUse()//returns fuel consumption
+	{
+		return consumptionRate;
+	}
+	public int getDistanceTravelled()//returns the distance travelled
+	{
+		return currentPosition;
+	}
+  
+	public void setDistanceTravelled(int newDistance) {
+		this.currentPosition = newDistance;
+	}
+  
   public Car()
   {
 	setAppearance('c');
-	fuel = STARTING_FUEL;
+	fuelLevel = STARTING_FUEL;
+	currentPosition = 0;
   }
 
   // As the car moves, this class or child classes can specify for that type of car
@@ -38,7 +58,7 @@ public class Car
 
   public int getFuel()
   {
-	return fuel;
+	return fuelLevel;
   }
 
   // Allows external queries of the fuel state of a particular car.
@@ -73,10 +93,10 @@ public class Car
 
   public void setFuel (int newFuel)
   {
-	if (fuel < 0)
+	if (fuelLevel < 0)
 	    System.out.println("Fuel cannot be set to a negative value");
 	else
-	    fuel = newFuel;
+	    fuelLevel = newFuel;
   }
 
   public String toString() 
@@ -85,4 +105,24 @@ public class Car
 	s = s + appearance;
 	return s;
   }
+  public void turn(GameController gc) {//displays suv menu and uses input to see what to do next
+		displayOptions();
+		String userAction = getInput();
+		this.performAction(userAction, gc);
+  }
+  public String getInput() {
+	  Scanner in = new Scanner(System.in);
+	  String input =in.next();
+	  return input;
+  }
+  
+  
+  abstract void displayOptions();
+  
+  abstract void performAction(String userAction, GameController gc);
+  
+  
+  
+  
+  
 }

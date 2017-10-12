@@ -31,7 +31,7 @@ public class Sports extends Car {
 	}
 	public int getDistanceTravelled()//returns the distance travelled
 	{
-		return speed;
+		return speed; 
 	}
 	public void setFuel(int newFuel){//changes the amount of fuel to minus the amount passed in 
 		fuelLevel=fuelLevel-newFuel;

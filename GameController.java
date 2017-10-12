@@ -13,6 +13,8 @@ public class GameController {
 	int suvFuel; 
 	DesertTrack aDes = new DesertTrack();
 	ArcticTrack anArc = new ArcticTrack(); 
+	
+	
 	public GameController(){
 
 		
@@ -54,24 +56,22 @@ public class GameController {
 	    	  return 3; 
 	      }
 	}
-	public int displaySUVOption(SUV mySUV, Sports mySports, DesertTrack aDes, ArcticTrack anArc, GameController aGameController) {//displays suv menu and uses input to see what to do next
-		int retInt = 0;
-		System.out.println("SUV driving options:");
-		System.out.println("(a)ll wheel drive mode");
-		System.out.println("(d)rive normally");
-		System.out.println("(q)uit simulation");
-		System.out.print("Enter selection: ");
+	
+	
+	public String getInput() {
 		Scanner in = new Scanner(System.in);
-		String suvInput =in.next();
-		if (suvInput.equals("c"))
+		String input =in.next();
+		return input;
+	}
+	
+	public void performActionSUV(String action, SUV mySUV) {
+		if (action.equals("c"))
 			Debug.on=true; 
-		if(suvInput.equals("q"))	{
+		if(action.equals("q"))	{
 			System.out.println("Quitting game...");
 			System.exit(1);
 		}
-
-		if (((suvInput.equals("a") || (suvInput.equals("d"))) && (generateBlizzard==false))){
-			retInt=2; 
+		if (((action.equals("a") || (action.equals("d"))) && (generateBlizzard==false))){
 			suvUserInput=suvUserInput+2;
 			mySUV.setFuel(3);				
 			suvFuel = mySUV.getFuel();
@@ -82,9 +82,8 @@ public class GameController {
 			System.out.println("Distance Travelled: " + distanceTravelled); 
 			System.out.println(); 
 			}
-		else if((suvInput.equals("a") && (generateBlizzard==true))){
+		else if((action.equals("a") && (generateBlizzard==true))){
 			System.out.println("Blizzard hits and SUV moves slowly but surely in AWD mode!!");
-			retInt=1; 
 			suvUserInput=suvUserInput+1;
 			mySUV.setFuel(3);
 			suvFuel = mySUV.getFuel();
@@ -96,9 +95,7 @@ public class GameController {
 			System.out.println(); 
 			generateBlizzard=false;
 		}
-		else if((suvInput.equals("d") && (generateBlizzard==true))){
-			System.out.println("Blizzard hits and car spins its wheels!!");
-			retInt=0; 
+		else if((action.equals("d") && (generateBlizzard==true))){
 			suvUserInput=suvUserInput+0;
 			mySUV.setFuel(3);
 			suvFuel = mySUV.getFuel(); 
@@ -106,39 +103,59 @@ public class GameController {
 			int fuelUse = mySUV.getFuelUse();
 			System.out.println("Fuel Use: " + fuelUse);
 			int distanceTravelled = mySUV.getDistanceTravelled();
-			System.out.println("Distance Travelled: " + 0); 
+			System.out.println("Distance Travelled: " + distanceTravelled); 
 			System.out.println(); 
 			generateBlizzard=false;
 		}
-
-		return retInt; 
-		
-		
-		
 	}
-	public int displaySportOptions(Sports mySport) {//displays suv menu and uses input to see what to do next
-		int retInt=0;
+	
+
+	public void displaySUVOption(SUV mySUV, Sports mySports, DesertTrack aDes, ArcticTrack anArc, GameController aGameController) {//displays suv menu and uses input to see what to do next
+		displaySUVOptions();
+		String userAction = getInput();
+		performActionSUV(userAction, mySUV);
+	}
+	
+	public static void displaySUVOptions(){
+		System.out.println("SUV driving options:");
+		System.out.println("(a)ll wheel drive mode");
+		System.out.println("(d)rive normally");
+		System.out.println("(q)uit simulation");
+		System.out.print("Enter selection: ");
+	}
+	
+	
+	
+	
+	public void displaySportOptions(Sports mySport) {//displays suv menu and uses input to see what to do next
+		displaySportOptions();
+		String userAction = getInput();
+		performActionSport(userAction, mySport);
+	}
+	
+	public void displaySportOptions() {
 		System.out.println("Sportscar driving options:");
 		System.out.println("(d)rive normally");
 		System.out.println("(q)uit simulation");
 		System.out.print("Enter selection: ");
-		Scanner in = new Scanner(System.in);
-		String sportsInput =in.next();
+	}
+	
+	
+	public  void performActionSport(String sportsInput, Sports mySport){
 		if (sportsInput.equals("c"))
 			Debug.on=true; 
 		if (sportsInput.equals("d")){
-			retInt=3; 
 			sportsUserInput=sportsUserInput+3;}
 		if(sportsInput.equals("q"))	{
 			System.out.println("Quitting game...");
 			System.exit(1);
 		}
 		if (generateHeat==false){
-		mySport.setFuel(2); 
-		sportsFuel = mySport.getFuel(); 
-		System.out.println("Current fuel: " + sportsFuel);
-		int fuelUse = mySport.getFuelUse();
-		System.out.println("Fuel Use: " + fuelUse);
+			mySport.setFuel(2); 
+			sportsFuel = mySport.getFuel(); 
+			System.out.println("Current fuel: " + sportsFuel);
+			int fuelUse = mySport.getFuelUse();
+			System.out.println("Fuel Use: " + fuelUse);
 		}
 		else{
 			System.out.println("A heatwave hammers the desert track!!!!");
@@ -151,9 +168,16 @@ public class GameController {
 		int distanceTravelled = mySport.getDistanceTravelled();
 		System.out.println("Distance Travelled: " + distanceTravelled); 
 		System.out.println(); 
-		return retInt;
-				
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int getsuvUserInput(){ //returns the user input from suv menu
 		return suvUserInput;
 	}

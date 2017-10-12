@@ -18,7 +18,7 @@ public class SUV extends Car {
 		}
 	}
 
-	public void performAction(String action, GameController gc) {
+	public void performAction(String action) {
 		if (action.equals("c"))
 			Debug.on=true;
 		if(action.equals("q"))	{

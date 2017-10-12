@@ -15,7 +15,7 @@ public class ArcticTrack extends Track {
 			super.display();
 		}
 
-		public void setNewPlace(SUV mySUV, GameController aGameController){// sets the new place and erases the place behind the car, determines when the car reaches the end and wins
+		public void setNewPlace(SUV mySUV){// sets the new place and erases the place behind the car, determines when the car reaches the end and wins
 			mySUV.setAppearance('V'); 
 
 			int moveForward = mySUV.getDistanceTravelled();
@@ -26,7 +26,7 @@ public class ArcticTrack extends Track {
 			}
 			if (this.aTrack[24]==mySUV){
 				System.out.println("The SUV has reached the end first!!!! ");
-				aGameController.setStarter(2); 
+				Driver.setStarter(2); 
 			}
 
 		}

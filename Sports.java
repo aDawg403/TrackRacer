@@ -25,7 +25,7 @@ public class Sports extends Car{
 		}
 	}
 	
-	public void performAction(String sportsInput, GameController gc){
+	public void performAction(String sportsInput){
 		if (sportsInput.equals("c"))
 			Debug.on=true; 
 		if(sportsInput.equals("q"))	{

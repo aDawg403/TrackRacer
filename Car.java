@@ -97,10 +97,10 @@ abstract public class Car
 	s = s + appearance;
 	return s;
   }
-  public void turn(GameController gc) {//displays suv menu and uses input to see what to do next
+  public void turn() {//displays suv menu and uses input to see what to do next
 		displayOptions();
 		String userAction = getInput();
-		this.performAction(userAction, gc);
+		this.performAction(userAction);
   }
   public String getInput() {
 	  Scanner in = new Scanner(System.in);
@@ -111,7 +111,7 @@ abstract public class Car
   
   abstract void displayOptions();
   
-  abstract void performAction(String userAction, GameController gc);
+  abstract void performAction(String userAction);
   
   
   

@@ -19,7 +19,7 @@ public class Debug
 
 
 	  
-  public static void displayMenu(SUV mySUV, Sports mySport, DesertTrack aDes, ArcticTrack arcTrack, GameController aGameController){//prints the cheat menu and asks for user input. this does not work. 
+  public static void displayMenu(SUV mySUV, Sports mySport, DesertTrack aDes, ArcticTrack arcTrack){//prints the cheat menu and asks for user input. this does not work. 
 	  System.out.println("CHEAT MENU SELECTION");
 	  System.out.println("(0) Toggle debugging messages on/off");
 	  System.out.println("(1) Change fuel of sports car");

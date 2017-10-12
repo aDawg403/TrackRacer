@@ -29,12 +29,18 @@ Starting execution point.
 
 public class Driver//main function that determines if the SUV or sports car has won 
 {
+	static int starter=0;
+	static DesertTrack aDes = new DesertTrack();
+	static ArcticTrack anArc = new ArcticTrack(); 
+	
+	
+	
+	
   public static void main(String [] args)
   {
-	GameController aGameController = new GameController();
 	SUV anSUV = new SUV();
 	Sports aSport = new Sports();
-	int result = aGameController.playGame(aGameController, anSUV, aSport);
+	int result = playGame(anSUV, aSport);
 	if(result ==1)
 		System.out.println("The SUV has won");
 	else if (result ==2)
@@ -42,5 +48,61 @@ public class Driver//main function that determines if the SUV or sports car has 
 	else
 		System.out.println();
 	}
-  }
+  
+	public static void printInstructions(){//prints overview of the game 
+		System.out.println("This is racing simulation with two separate driving tracks: arctic and desert. For this version of the program the arctic track contains");
+		System.out.println("an SUV (Sport Utility Vehicle) and the desert track contains a sports car. Each car will try to reach the end of its respective track without");
+		System.out.println("running out of fuel and prior to the other car (see Figure 1). If either or both cars reach the end of the track then the simulation ends: ");
+		System.out.println("draw (if both reach it during the same turn), win (for the car that reached it first), and loss (for the car that didn't reach it first). ");
+		System.out.println("If one car runs out of fuel then the simulation continues until: both cars run out fuel (tie) or the other car reaches the end (win for that car).");
+		System.out.println("The simulation is also a 'draw' if the user quits the program early.");
+	}
+	
+	public static int playGame(SUV mySUV, Sports mySport)// plays the game, determines when the car runs out of fuel 
+	{ 
+		  boolean sportsWon=false;
+		  boolean suvWon=false;
+		  printInstructions();
+		  while (starter==0)
+		  {
+			  anArc.setNewPlace(mySUV);
+			  aDes.setNewPlace(mySport);
+			  anArc.display();
+			  aDes.display();
+			  if (starter==2){
+				  break; 
+			  }
+			  mySUV.turn();
+			  mySport.turn(); 
+			  if (mySport.getFuel() <= 1){
+				  starter=1;
+				  return 1; }
+			  if (mySUV.getFuel() <= 2){
+				  starter=1;
+				  return 2;
+			  }
+		  }
+	     if ((suvWon)&& (sportsWon==false)){
+	    	  return 1;
+	      }
+	      else if ((sportsWon)&&(suvWon==false)){
+	    	  return 2;
+	      }
+	      else{
+	    	  return 3; 
+	      }
+	}
+	
+	
+	public static void setStarter(int start){//changes the starter to break out of loop when needed
+		starter=start;
+	}
+	
+	
+  
+  
+  
+  
+  
+ }
 

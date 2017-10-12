@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class testCases {
@@ -55,6 +54,8 @@ public class testCases {
 		mySUV.performAction(action, gc);
 		assertEquals(Debug.on, true); //Assert that debug has changed
 	}
+	
+	
 	
 	
 

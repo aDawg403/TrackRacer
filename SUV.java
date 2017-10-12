@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class SUV extends Car {
 	
 	public SUV(){
@@ -27,7 +25,7 @@ public class SUV extends Car {
 			System.out.println("Quitting game...");
 			System.exit(1);
 		}
-		if (gc.generateBlizzard == true) {
+		if (ArcticTrack.generateBlizzard() == true) {
 			if (action.equals("d")) {
 				this.setFuel(this.getFuel() - this.getFuelUse());	
 			}
@@ -35,7 +33,6 @@ public class SUV extends Car {
 				System.out.println("Blizzard hits and SUV moves slowly but surely in AWD mode!!");
 				this.setDistanceTravelled(this.getDistanceTravelled() + 1);
 			}
-			gc.generateBlizzard = false;
 		}
 		else {
 			this.setDistanceTravelled(this.getDistanceTravelled() + 2);

@@ -1,14 +1,10 @@
 
-import java.util.Scanner;
-import java.util.Random;
 
 public class GameController {
 	
 	int sportsUserInput=0;
 	int suvUserInput=0; 
 	int starter=0;
-	boolean generateBlizzard=false; 
-	boolean generateHeat=false;
 	int suvFuel; 
 	DesertTrack aDes = new DesertTrack();
 	ArcticTrack anArc = new ArcticTrack(); 
@@ -33,8 +29,6 @@ public class GameController {
 			  }
 			  mySUV.turn(aGameController);
 			  mySport.turn(aGameController); 
-			  generateBlizzard();
-			  generateHeat(); 
 			  if (mySport.getFuel() <= 1){
 				  starter=1;
 				  return 1; }
@@ -63,20 +57,7 @@ public class GameController {
 	public int getsportsUserInput(){//returns user input from sports car menu
 		return sportsUserInput;
 	}
-	public void generateBlizzard(){//10% chance of generating a blizzard 
-		Random randomGenerator = new Random(); 
-		int randomInt = randomGenerator.nextInt(10)+1;
-		if (randomInt==5)
-			generateBlizzard=true;
-		
-	}
-	public void generateHeat(){// 10% chance of generating a heat wave 
-		Random randomGenerator = new Random(); 
-		int randomInt = randomGenerator.nextInt(10)+1;
-		if (randomInt==5)
-			generateHeat=true;
-		
-	}
+
 	public void setStarter(int start){//changes the starter to break out of loop when needed
 		starter=start;
 	}

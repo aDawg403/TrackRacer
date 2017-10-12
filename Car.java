@@ -35,7 +35,7 @@ abstract public class Car
 		return currentPosition;
 	}
   
-	public void setDistanceTravelled(int newDistance) {
+	public void setDistanceTravelled(int  newDistance) {
 		this.currentPosition = newDistance;
 	}
   
@@ -77,14 +77,6 @@ abstract public class Car
 
   // If this method is overriden then all child class methods must also display
   // the same debugging messages shown below.
-  public int move ()
-  {
-	consumeFuel(CONSUMPTION_RATE);
-	System.out.println("Current fuel: " + fuel);
-	System.out.println("Fuel use: " + CONSUMPTION_RATE);
-	//System.out.println("Distance traveled: " + STANDARD_DISTANCE);
-	return STANDARD_DISTANCE;
-  }
 
   public void setAppearance (char anAppearance)
   {

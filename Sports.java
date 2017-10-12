@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Sports extends Car{
 	boolean twoWheelDrive; 
@@ -14,6 +13,7 @@ public class Sports extends Car{
 		this.twoWheelDrive=true; 
 		this.currentPosition = 0;
 		this.currentRound = 0;
+		
 	}
 
 	public void setPosition(int n, DesertTrack aDes, Sports mySport){// sets the position of the suv 
@@ -35,7 +35,7 @@ public class Sports extends Car{
 		if (sportsInput.equals("d")){
 			this.setDistanceTravelled(this.getDistanceTravelled() + 3);
 		}
-		if (gc.generateHeat==false){
+		if (DesertTrack.generateHeat()==false){
 			this.setFuel(this.getFuel() - this.getFuelUse()); 
 			this.fuelLevel = this.getFuel(); 
 			System.out.println("Current fuel: " + this.fuelLevel);
@@ -47,7 +47,6 @@ public class Sports extends Car{
 			this.setFuel(this.getFuel() - 4); 
 			System.out.println("Current fuel: " + this.getFuel());
 			System.out.println("Fuel Use: " + 4);
-			gc.generateHeat=false; 
 		}
 		int distanceTravelled = this.getDistanceTravelled() + 1;
 		System.out.println("Distance Travelled: " + distanceTravelled); 

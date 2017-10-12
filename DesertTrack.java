@@ -1,5 +1,4 @@
-
-
+import java.util.Random;
 
 public class DesertTrack extends Track {
 	private String trackType;
@@ -32,7 +31,17 @@ public class DesertTrack extends Track {
 		public String getTrackType(){//returns the tracktype
 			return trackType; 
 		}
-			}
+		
+		public static boolean generateHeat(){// 10% chance of generating a heat wave 
+			Random randomGenerator = new Random(); 
+			int randomInt = randomGenerator.nextInt(10)+1;
+			if (randomInt==5)
+				return true;
+			return false;
+			
+		}
+		
+}
 		
 
 

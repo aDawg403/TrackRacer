@@ -1,5 +1,4 @@
-
-
+import java.util.Random;
 
 public class ArcticTrack extends Track {
 	private String trackType;
@@ -34,5 +33,20 @@ public class ArcticTrack extends Track {
 		public String getTrackType(){//returns value for the track type
 			return trackType; 
 		}
-	}
+		
+		public static boolean generateBlizzard(){//10% chance of generating a blizzard 
+			Random randomGenerator = new Random(); 
+			int randomInt = randomGenerator.nextInt(10)+1;
+			if (randomInt==5) {
+				return true;
+			}
+			return false;
+			
+		}
+		
+		
+		
+		
+		
+}
 

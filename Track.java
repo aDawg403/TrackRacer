@@ -66,15 +66,14 @@ public class Track
 	// Display each track element bound left and right by vertical bar.
 	for (c = 0; c < SIZE; c++)
 	{
-	    if (aTrack[c] != null)
-	    {
-		// Each element is preceeded by a vertical bar.
-		System.out.print('|');
-		// Display element element.
-		System.out.print(aTrack[c]);
+	    if (aTrack[c] != null){
+	    	// Each element is preceeded by a vertical bar.
+	    	System.out.print('|');
+	    	// Display element element.
+	    	System.out.print(aTrack[c]);
 	    }
 	    else
-		System.out.print("| ");
+	    	System.out.print("| ");
 	} 
 	// Closing bar at end of row (follows last element)
 	System.out.println('|');

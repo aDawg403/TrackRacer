@@ -1,5 +1,4 @@
-
-
+import java.util.Scanner;
 
 public class Sports extends Car {
 	int fuelLevel; 
@@ -31,7 +30,7 @@ public class Sports extends Car {
 	}
 	public int getDistanceTravelled()//returns the distance travelled
 	{
-		return speed; 
+		return currentPosition;
 	}
 	public void setFuel(int newFuel){//changes the amount of fuel to minus the amount passed in 
 		fuelLevel=fuelLevel-newFuel;
@@ -45,5 +44,58 @@ public class Sports extends Car {
 		}
 	}
 
+	
+	public  void performActionSport(String sportsInput, Sports mySport, GameController gc){
+		if (sportsInput.equals("c"))
+			Debug.on=true; 
+		if (sportsInput.equals("d")){
+			mySport.currentPosition=mySport.currentPosition+3;
+		}
+		if(sportsInput.equals("q"))	{
+			System.out.println("Quitting game...");
+			System.exit(1);
+		}
+		if (gc.generateHeat==false){
+			mySport.setFuel(2); 
+			mySport.fuelLevel = mySport.getFuel(); 
+			System.out.println("Current fuel: " + mySport.fuelLevel);
+			int fuelUse = mySport.getFuelUse();
+			System.out.println("Fuel Use: " + fuelUse);
+		}
+		else{
+			System.out.println("A heatwave hammers the desert track!!!!");
+			mySport.setFuel(4);
+			mySport.fuelLevel = mySport.getFuel(); 
+			System.out.println("Current fuel: " + mySport.fuelLevel);
+			System.out.println("Fuel Use: " + 4);
+			gc.generateHeat=false; 
+		}
+		int distanceTravelled = mySport.getDistanceTravelled();
+		System.out.println("Distance Travelled: " + distanceTravelled); 
+		System.out.println(); 
+	}
+	
+	
+	public void turn(Sports mySport, GameController gc) {//displays suv menu and uses input to see what to do next
+		displayMoveOptions();
+		String userAction = getInput();
+		performActionSport(userAction, mySport, gc);
+	}
+	
+	
+	public String getInput() {
+		Scanner in = new Scanner(System.in);
+		String input =in.next();
+		return input;
+	}
+	
+	public void displayMoveOptions() {
+		System.out.println("Sportscar driving options:");
+		System.out.println("(d)rive normally");
+		System.out.println("(q)uit simulation");
+		System.out.print("Enter selection: ");
+	}
+	
+	
 }
 

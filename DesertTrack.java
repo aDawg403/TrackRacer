@@ -18,8 +18,8 @@ public class DesertTrack extends Track {
 		public void setNewPlace(Sports mySport, GameController aGameController){//sets new location of car and erases old one. Determines when it reaches end of array
 			mySport.setAppearance('P'); 
 
-				int moveForward = aGameController.getsportsUserInput();
-				this.aTrack[0+moveForward]= mySport;
+				int moveForward = mySport.getDistanceTravelled();
+				this.aTrack[moveForward]= mySport;
 				if (moveForward>=3)
 				this.aTrack[moveForward-3]=null;
 				if (this.aTrack[24]==mySport){

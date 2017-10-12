@@ -9,15 +9,12 @@ public class GameController {
 	int starter=0;
 	boolean generateBlizzard=false; 
 	boolean generateHeat=false;
-	int sportsFuel;
 	int suvFuel; 
 	DesertTrack aDes = new DesertTrack();
 	ArcticTrack anArc = new ArcticTrack(); 
 	
 	
 	public GameController(){
-
-		
 	}
 
 	public int playGame(GameController aGameController, SUV mySUV, Sports mySport)// plays the game, determines when the car runs out of fuel 
@@ -34,14 +31,14 @@ public class GameController {
 			  if (starter==2){
 				  break; 
 			  }
-			  displaySUVOption(mySUV);
-			  displaySportOptions(mySport); 
+			  mySUV.turn(mySUV, aGameController);
+			  mySport.turn(mySport, aGameController); 
 			  generateBlizzard();
 			  generateHeat(); 
-			  if (sportsFuel <= 1){
+			  if (mySport.getFuel() <= 1){
 				  starter=1;
 				  return 1; }
-			  if (suvFuel <= 2){
+			  if (mySUV.getFuel() <= 2){
 				  starter=1;
 				  return 2;
 			  }
@@ -56,124 +53,6 @@ public class GameController {
 	    	  return 3; 
 	      }
 	}
-	
-	
-	public String getInput() {
-		Scanner in = new Scanner(System.in);
-		String input =in.next();
-		return input;
-	}
-	
-	public void performActionSUV(String action, SUV mySUV) {
-		if (action.equals("c"))
-			Debug.on=true;
-		if(action.equals("q"))	{
-			System.out.println("Quitting game...");
-			System.exit(1);
-		}
-		if (((action.equals("a") || (action.equals("d"))) && (generateBlizzard==false))){
-			suvUserInput=suvUserInput+2;
-			mySUV.setFuel(3);				
-			suvFuel = mySUV.getFuel();
-			System.out.println("Current fuel: " + suvFuel);
-			int fuelUse = mySUV.getFuelUse();
-			System.out.println("Fuel Use: " + fuelUse);
-			int distanceTravelled = mySUV.getDistanceTravelled();
-			System.out.println("Distance Travelled: " + distanceTravelled); 
-			System.out.println(); 
-			}
-		else if((action.equals("a") && (generateBlizzard==true))){
-			System.out.println("Blizzard hits and SUV moves slowly but surely in AWD mode!!");
-			suvUserInput=suvUserInput+1;
-			mySUV.setFuel(3);
-			suvFuel = mySUV.getFuel();
-			System.out.println("Current fuel: " + suvFuel);
-			int fuelUse = mySUV.getFuelUse();
-			System.out.println("Fuel Use: " + fuelUse);
-			int distanceTravelled = mySUV.getDistanceTravelled();
-			System.out.println("Distance Travelled: " + 1); 
-			System.out.println(); 
-			generateBlizzard=false;
-		}
-		else if((action.equals("d") && (generateBlizzard==true))){
-			suvUserInput=suvUserInput+0;
-			mySUV.setFuel(3);
-			suvFuel = mySUV.getFuel(); 
-			System.out.println("Current fuel: " + suvFuel);
-			int fuelUse = mySUV.getFuelUse();
-			System.out.println("Fuel Use: " + fuelUse);
-			int distanceTravelled = mySUV.getDistanceTravelled();
-			System.out.println("Distance Travelled: " + distanceTravelled); 
-			System.out.println(); 
-			generateBlizzard=false;
-		}
-	}
-	
-
-	public void displaySUVOption(SUV mySUV) {//displays suv menu and uses input to see what to do next
-		displaySUVOptions();
-		String userAction = getInput();
-		performActionSUV(userAction, mySUV);
-	}
-	
-	public static void displaySUVOptions(){
-		System.out.println("SUV driving options:");
-		System.out.println("(a)ll wheel drive mode");
-		System.out.println("(d)rive normally");
-		System.out.println("(q)uit simulation");
-		System.out.print("Enter selection: ");
-	}
-	
-	
-	
-	
-	public void displaySportOptions(Sports mySport) {//displays suv menu and uses input to see what to do next
-		displaySportOptions();
-		String userAction = getInput();
-		performActionSport(userAction, mySport);
-	}
-	
-	public void displaySportOptions() {
-		System.out.println("Sportscar driving options:");
-		System.out.println("(d)rive normally");
-		System.out.println("(q)uit simulation");
-		System.out.print("Enter selection: ");
-	}
-	
-	
-	public  void performActionSport(String sportsInput, Sports mySport){
-		if (sportsInput.equals("c"))
-			Debug.on=true; 
-		if (sportsInput.equals("d")){
-			sportsUserInput=sportsUserInput+3;}
-		if(sportsInput.equals("q"))	{
-			System.out.println("Quitting game...");
-			System.exit(1);
-		}
-		if (generateHeat==false){
-			mySport.setFuel(2); 
-			sportsFuel = mySport.getFuel(); 
-			System.out.println("Current fuel: " + sportsFuel);
-			int fuelUse = mySport.getFuelUse();
-			System.out.println("Fuel Use: " + fuelUse);
-		}
-		else{
-			System.out.println("A heatwave hammers the desert track!!!!");
-			mySport.setFuel(4);
-			sportsFuel=mySport.getFuel();
-			System.out.println("Current fuel: " + sportsFuel);
-			System.out.println("Fuel Use: " + 4);
-			generateHeat=false; 
-		}
-		int distanceTravelled = mySport.getDistanceTravelled();
-		System.out.println("Distance Travelled: " + distanceTravelled); 
-		System.out.println(); 
-	}
-	
-	
-	
-	
-	
 	
 	
 	

@@ -32,6 +32,9 @@ public class Driver//main function that determines if the SUV or sports car has 
 	static int starter=0;
 	static DesertTrack aDes = new DesertTrack();
 	static ArcticTrack anArc = new ArcticTrack(); 
+	static String winMessage;
+	static boolean suvWon = false;
+	static boolean sportWon = false;
 	
 	
 	
@@ -40,14 +43,9 @@ public class Driver//main function that determines if the SUV or sports car has 
   {
 	SUV anSUV = new SUV();
 	Sports aSport = new Sports();
-	int result = playGame(anSUV, aSport);
-	if(result ==1)
-		System.out.println("The SUV has won");
-	else if (result ==2)
-		System.out.println("The sports car has won");
-	else
-		System.out.println();
-	}
+	playGame(anSUV, aSport);
+	System.out.println(winMessage);
+  }
   
 	public static void printInstructions(){//prints overview of the game 
 		System.out.println("This is racing simulation with two separate driving tracks: arctic and desert. For this version of the program the arctic track contains");
@@ -58,10 +56,8 @@ public class Driver//main function that determines if the SUV or sports car has 
 		System.out.println("The simulation is also a 'draw' if the user quits the program early.");
 	}
 	
-	public static int playGame(SUV mySUV, Sports mySport)// plays the game, determines when the car runs out of fuel 
+	public static void playGame(SUV mySUV, Sports mySport)// plays the game, determines when the car runs out of fuel 
 	{ 
-		  boolean sportsWon=false;
-		  boolean suvWon=false;
 		  printInstructions();
 		  while (starter==0)
 		  {
@@ -76,20 +72,21 @@ public class Driver//main function that determines if the SUV or sports car has 
 			  mySport.turn(); 
 			  if (mySport.getFuel() <= 1){
 				  starter=1;
-				  return 1; }
+				  winMessage = "The SUV has won";
+			  }
 			  if (mySUV.getFuel() <= 2){
 				  starter=1;
-				  return 2;
+				  winMessage = "The sports car has won";
 			  }
 		  }
-	     if ((suvWon)&& (sportsWon==false)){
-	    	  return 1;
+	     if ((suvWon)&& (sportWon==false)){
+	    	 winMessage = "The SUV has won";
 	      }
-	      else if ((sportsWon)&&(suvWon==false)){
-	    	  return 2;
+	      else if ((sportWon)&&(suvWon==false)){
+	    	  winMessage = "The sports car has won";
 	      }
 	      else{
-	    	  return 3; 
+	    	  winMessage = " ";
 	      }
 	}
 	

@@ -22,12 +22,13 @@ public class DesertTrack extends Track {
 				if (moveForward>=3)
 				this.aTrack[moveForward-3]=null;
 				if (this.aTrack[24]==mySport){
-					System.out.println("The sports car has reached the end first!!!! ");
+					Driver.sportWon = true;
+					Driver.suvWon = false;
 					Driver.setStarter(2); 
 				}
 
 				
-				}
+		}
 		public String getTrackType(){//returns the tracktype
 			return trackType; 
 		}

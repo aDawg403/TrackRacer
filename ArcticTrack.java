@@ -25,7 +25,8 @@ public class ArcticTrack extends Track {
 				this.aTrack[moveForward-1]=null;
 			}
 			if (this.aTrack[24]==mySUV){
-				System.out.println("The SUV has reached the end first!!!! ");
+				Driver.sportWon = false;
+				Driver.suvWon = true;
 				Driver.setStarter(2); 
 			}
 
